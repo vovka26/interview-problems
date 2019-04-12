@@ -21,22 +21,35 @@ class Queue {
     }
 
     add(record){
-        while(this.first.peek()){
-            this.second.add(this.first.pop());
-        }
-        const addedRecord = this.first.push(record);
-        while(this.second.peek()){
-            this.first.add(this.second.pop());
-        }
-        return addedRecord;
+        this.first.push(record);
     }
 
     remove(){
+        while(this.first.peek()){
+            this.second.push(this.first.pop());
+        }
 
+        const removed = this.second.pop();
+        
+        while(this.second.peek()){
+            this.first.push(this.second.pop());
+        }
+        
+        return removed;
     }
 
     peek(){
+        while(this.first.peek()){
+            this.second.push(this.first.pop());
+        }
 
+        const peeked = this.second.peek();
+
+        while(this.second.peek()){
+            this.first.push(this.second.pop());
+        }
+
+        return peeked;
     }
 }
 
