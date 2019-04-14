@@ -35,17 +35,48 @@ class LinkedList {
     }
 
     getLast(){
+        if (!this.head) {
+            return null;
+        }
         let node = this.head;
-        let last = this.head;
 
         while(node){
-            last = node;
-            node = node.next;
-            
-            if (!node) {
-                return last;
+            if (!node.next) {
+                return node;
             }
+                node = node.next;
         }
+    }
+
+    clear(){
+        this.head = null;
+    }
+
+    removeFirst(){
+        if (!this.head) {
+            return;
+        }
+        this.head = this.head.next;
+    }
+
+    removeLast(){
+        if (!this.head) {
+            return;
+        }
+        
+        if (!this.head.next) {
+            this.head = null;
+            return;
+        }
+
+        let previous = this.head;
+        let node = this.head.next;
+
+        while(node.next){
+            previous = node;
+            node = node.next;
+        }
+        previous.next = null;
     }
 }
 
