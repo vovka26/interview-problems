@@ -101,6 +101,7 @@ class LinkedList {
         }
         return null;
     }
+
     // getAt(ind){
     //     let node = this.head;
     //     if(!node){
@@ -117,7 +118,24 @@ class LinkedList {
     //     }
     //     return node;
     // }
+    
+    removeAt(ind){
+        if (!this.head) {
+            return;
+        }
 
+        if (ind === 0) {
+            this.head = this.head.next;
+            return;
+        }
+
+        const previous = this.getAt(ind - 1);
+        if (!previous || !previous.next) {
+            return;
+        }
+        previous.next = previous.next.next;
+
+    }
 
 }
 
